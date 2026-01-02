@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>지경민 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #FFF9E6 0%, #E8F4FD 50%, #FDE8F0 100%);
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 40px 20px;
+    }
+    
+    .portfolio-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      animation: slideUp 0.8s ease-out;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #FFB347 0%, #FF6B6B 50%, #A855F7 100%);
+      padding: 40px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: white;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+    
+    .avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .name {
+      color: white;
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0 0 8px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .title {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 16px;
+      font-weight: 400;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      margin-top: 12px;
+      backdrop-filter: blur(4px);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .intro {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      font-weight: 300;
+      margin-top: 16px;
+      position: relative;
+      z-index: 1;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    
+    .content {
+      padding: 40px;
+    }
+    
+    .section {
+      margin-bottom: 36px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    .section:nth-child(1) { animation-delay: 0.2s; }
+    .section:nth-child(2) { animation-delay: 0.4s; }
+    .section:nth-child(3) { animation-delay: 0.6s; }
+    .section:nth-child(4) { animation-delay: 0.8s; }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #FFB347;
+    }
+    
+    .section-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #FFB347, #FF6B6B);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #FFF9E6, #FEF3C7);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255, 179, 71, 0.25);
+    }
+    
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      color: #FF6B6B;
+    }
+    
+    .contact-info label {
+      display: block;
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 2px;
+    }
+    
+    .contact-info span {
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+    }
+    
+    .tech-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: white;
+      border: 2px solid #E5E7EB;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .tech-item:hover {
+      border-color: #FF6B6B;
+      background: linear-gradient(135deg, #FFF5F5, #FEE2E2);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.2);
+    }
+    
+    .tech-item i {
+      font-size: 20px;
+    }
+    
+    .tech-item.python i { color: #3776AB; }
+    .tech-item.r i { color: #276DC3; }
+    .tech-item.database i { color: #F29111; }
+    .tech-item.tensorflow i { color: #FF6F00; }
+    .tech-item.pandas i { color: #150458; }
+    .tech-item.git i { color: #F05032; }
+    
+    .project-card {
+      background: linear-gradient(135deg, #E0F2FE, #DBEAFE);
+      border-radius: 16px;
+      padding: 24px;
+      border-left: 5px solid #3B82F6;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .education-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+      border-radius: 16px;
+      border-left: 5px solid #22C55E;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .education-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.2);
+    }
+    
+    .education-icon {
+      width: 56px;
+      height: 56px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #0078D4;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .education-info {
+      flex: 1;
+    }
+    
+    .education-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #166534;
+      margin-bottom: 4px;
+    }
+    
+    .education-desc {
+      font-size: 14px;
+      color: #4B5563;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(59, 130, 246, 0.2);
+    }
+    
+    .project-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1E40AF;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .project-emoji {
+      font-size: 24px;
+    }
+    
+    .project-desc {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.7;
+    }
+    
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    
+    .project-tag {
+      background: white;
+      color: #3B82F6;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .project-tag:hover {
+      background: #3B82F6;
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 24px;
+      background: #F8FAFC;
+      color: #94A3B8;
+      font-size: 13px;
+    }
+    
+    .footer i {
+      color: #FF6B6B;
+      animation: heartbeat 1.5s infinite;
+    }
+    
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    /* 반응형 스타일 */
+    @media (max-width: 768px) {
+      body {
+        padding: 20px 15px;
+      }
+      
+      .header {
+        padding: 30px 20px;
+      }
+      
+      .avatar {
+        width: 100px;
+        height: 100px;
+        font-size: 50px;
+      }
+      
+      .name {
+        font-size: 26px;
+      }
+      
+      .content {
+        padding: 25px 20px;
+      }
+      
+      .section-title {
+        font-size: 18px;
+      }
+      
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tech-grid {
+        gap: 8px;
+      }
+      
+      .tech-item {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+      
+      .tech-item i {
+        font-size: 18px;
+      }
+      
+      .project-card {
+        padding: 20px;
+      }
+      
+      .project-title {
+        font-size: 16px;
+      }
+      
+      .education-card {
+        padding: 16px 20px;
+        gap: 16px;
+      }
+      
+      .education-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+      }
+      
+      .education-title {
+        font-size: 15px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .name {
+        font-size: 22px;
+      }
+      
+      .title {
+        font-size: 14px;
+      }
+      
+      .contact-item {
+        padding: 14px 16px;
+      }
+      
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      
+      .contact-info span {
+        font-size: 14px;
+      }
+      
+      .tech-item {
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+    }
+    
+    /* 클릭 효과 */
+    .clickable {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .clickable::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s, height 0.4s;
+    }
+    
+    .clickable:active::after {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio-card">
+    <div class="header">
+      <div class="avatar" id="avatar">👩‍💻</div>
+      <h1 class="name">JI KYOUNGMIN</h1>
+      <p class="title">AI Engineer Candidate</p>
+      <span class="badge">🤖 AI & Bioinformatics</span>
+      <p class="intro">AI 기술로 생물정보학의 새로운 가능성을 탐구하는 AI 엔지니어 지망생입니다</p>
+    </div>
+    
+    <div class="content">
+      <div class="section">
+        <h2 class="section-title">
+          <span class="section-icon"><i class="fas fa-envelope"></i></span>
+          Contact
+        </h2>
+        <div class="contact-grid">
+          <div class="contact-item clickable" onclick="copyToClipboard('JI KYOUNGMIN', this)">
+            <div class="contact-icon"><i class="fas fa-user"></i></div>
+            <div class="contact-info">
+              <label>이름</label>
+              <span>JI KYOUNGMIN</span>
+            </div>
+          </div>
+          <div class="contact-item clickable" onclick="copyToClipboard('jenny1672@naver.com', this)">
+            <div class="contact-icon"><i class="fas fa-at"></i></div>
+            <div class="contact-info">
+              <label>이메일</label>
+              <span>jenny1672@naver.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2 class="section-title">
+          <span class="section-icon"><i class="fas fa-code"></i></span>
+          Tech Stack
+        </h2>
+        <div class="tech-grid">
+          <div class="tech-item python clickable">
+            <i class="fab fa-python"></i>
+            <span>Python</span>
+          </div>
+          <div class="tech-item r clickable">
+            <i class="fab fa-r-project"></i>
+            <span>R</span>
+          </div>
+          
+          <div class="tech-item pandas clickable">
+            <i class="fas fa-table"></i>
+            <span>Pandas</span>
+          </div>
+          <div class="tech-item git clickable">
+            <i class="fab fa-git-alt"></i>
+            <span>Git</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2 class="section-title">
+          <span class="section-icon"><i class="fas fa-graduation-cap"></i></span>
+          Education
+        </h2>
+        <div class="education-card clickable">
+          <div class="education-icon">
+            <i class="fab fa-microsoft"></i>
+          </div>
+          <div class="education-info">
+            <h3 class="education-title">Microsoft AI School</h3>
+            <p class="education-desc">AI 엔지니어 양성 교육과정 수강</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2 class="section-title">
+          <span class="section-icon"><i class="fas fa-folder-open"></i></span>
+          Projects
+        </h2>
+        <div class="project-card clickable">
+          <h3 class="project-title">
+            <span class="project-emoji">🧬</span>
+            난소기형종 원인 유전자 분석
+          </h3>
+          <p class="project-desc">
+            난소기형종(Ovarian Teratoma)의 발생 원인이 되는 유전자를 분석하는 프로젝트입니다. 
+            유전체 데이터를 활용하여 변이 분석 및 원인 유전자 탐색을 수행합니다.
+          </p>
+          <div class="project-tags">
+            <span class="project-tag">Bioinformatics</span>
+            <span class="project-tag">Gene Analysis</span>
+            <span class="project-tag">Variant Calling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      © 2025 JI KYOUNGMIN Portfolio • Made with <i class="fas fa-heart"></i>
+    </div>
+  </div>
+  
+  <!-- Toast 알림 -->
+  <div id="toast" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+  ">복사되었습니다!</div>
+
+  <script>
+    // 아바타 클릭 시 이모지 변경
+    const avatars = ['👩‍💻', '🤖', '🧠', '💻', '🔬', '📊'];
+    let avatarIndex = 0;
+    
+    document.getElementById('avatar').addEventListener('click', function() {
+      avatarIndex = (avatarIndex + 1) % avatars.length;
+      this.textContent = avatars[avatarIndex];
+      this.style.transform = 'scale(1.2) rotate(10deg)';
+      setTimeout(() => {
+        this.style.transform = 'scale(1) rotate(0deg)';
+      }, 200);
+    });
+    
+    // 클립보드 복사 기능
+    function copyToClipboard(text, element) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(text + ' 복사됨!');
+      }).catch(() => {
+        showToast('복사 실패');
+      });
+    }
+    
+    // Toast 알림 표시
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(100px)';
+      }, 2000);
+    }
+    
+    // 기술 스택 클릭 효과
+    document.querySelectorAll('.tech-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.style.transform = 'translateY(-3px) scale(1.1)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    });
+    
+    // 프로젝트 카드 클릭 시 상세 정보 토글
+    document.querySelector('.project-card').addEventListener('click', function() {
+      const desc = this.querySelector('.project-desc');
+      if (desc.style.maxHeight) {
+        desc.style.maxHeight = null;
+      } else {
+        desc.style.maxHeight = desc.scrollHeight + 'px';
+      }
+    });
+    
+    // 스크롤 애니메이션 (Intersection Observer)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+</html>
